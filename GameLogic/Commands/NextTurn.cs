@@ -4,8 +4,7 @@ namespace GameLogic.Commands
 	{
 		protected override bool Run ()
 		{
-			// Именно тут будет вся логика хода
-
+			new ConstructionProgress().Execute(Core);
 			Core.Turns.NextTurn();
 			return true;
 		}

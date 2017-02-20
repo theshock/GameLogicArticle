@@ -27,6 +27,8 @@ namespace LogicTests
 				.IsValid
 			);
 
+			room.Building.Constructible.Complete();
+
 			Assert.AreEqual(BuildingType.PowerPlant, room.Building.Type);
 			Assert.AreEqual(0, room.Building.Modules.Count());
 
@@ -76,6 +78,8 @@ namespace LogicTests
 			)
 			.Execute(core);
 
+			room.Building.Constructible.Complete();
+
 			Assert.IsFalse(
 				new BuildingConstruct(
 					room,
@@ -108,6 +112,8 @@ namespace LogicTests
 				core.Factory.ProduceBuilding(BuildingType.PowerPlant)
 			)
 			.Execute(core);
+
+			room.Building.Constructible.Complete();
 
 			Assert.IsFalse(
 				new ModuleConstruct(
@@ -149,6 +155,9 @@ namespace LogicTests
 				.IsValid
 			);
 
+			roomRoboport.Building.Constructible.Complete();
+			roomPowerPlant.Building.Constructible.Complete();
+
 			Assert.IsFalse(
 				new ModuleConstruct(
 					roomRoboport.Building,
@@ -168,6 +177,76 @@ namespace LogicTests
 				.Execute(core)
 				.IsValid
 			);
+		}
+
+		[TestMethod]
+		public void CantConstructInUncompleteBuilding ()
+		{
+			var core = new GameLogic.Core();
+			var room = core.Ship.GetRoom(0);
+
+			new BuildingConstruct(
+				room,
+				core.Factory.ProduceBuilding(BuildingType.PowerPlant)
+			)
+			.Execute(core);
+
+			Assert.IsFalse(
+				new ModuleConstruct(
+					room.Building,
+					core.Factory.ProduceModule(ModuleType.Generator),
+					2
+				)
+				.Execute(core)
+				.IsValid
+			);
+		}
+
+		[TestMethod]
+		public void Constructible ()
+		{
+			const int smelteryTime = 10;
+			const int furnaceTime = 6;
+
+			var core = new GameLogic.Core();
+			var room = core.Ship.GetRoom(0);
+
+			// Smeltery
+
+			new BuildingConstruct(
+				room,
+				core.Factory.ProduceBuilding(BuildingType.Smeltery)
+			)
+			.Execute(core);
+
+			Assert.IsFalse(room.Building.Constructible.IsReady);
+
+			new NextTurnCount(smelteryTime - 1).Execute(core);
+
+			Assert.IsFalse(room.Building.Constructible.IsReady);
+
+			new NextTurn().Execute(core);
+
+			Assert.IsTrue(room.Building.Constructible.IsReady);
+
+			// Furnace
+			new ModuleConstruct(
+				room.Building,
+				core.Factory.ProduceModule(ModuleType.Furnace),
+				2
+			).Execute(core);
+
+			var module = room.Building.GetModule(2);
+
+			Assert.IsFalse(module.Constructible.IsReady);
+
+			new NextTurnCount(furnaceTime - 1).Execute(core);
+
+			Assert.IsFalse(module.Constructible.IsReady);
+
+			new NextTurn().Execute(core);
+
+			Assert.IsTrue(module.Constructible.IsReady);
 		}
 	}
 }

@@ -5,5 +5,6 @@ namespace GameLogic.Architecture
 		public BuildingType Type;
 		public int ModulesLimit;
 		public ModuleType[] AvailableModules;
+		public int ConstructionTime;
 	}
 }

@@ -33,6 +33,10 @@ namespace GameLogic.Commands
 			if (!Building.Config.AvailableModules.Contains(Module.Type)) {
 				return false;
 			}
+			
+			if (!Building.Constructible.IsReady) {
+				return false;
+			}
 
 			Building.SetModule(Position, Module);
 			return true;

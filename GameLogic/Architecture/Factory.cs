@@ -11,16 +11,19 @@ namespace GameLogic.Architecture
 			}},
 			{ BuildingType.PowerPlant, new BuildingConfig() {
 				Type = BuildingType.PowerPlant,
+				ConstructionTime = 8,
 				ModulesLimit = 5,
 				AvailableModules = new[]{ ModuleType.Generator }
 			}},
 			{ BuildingType.Smeltery, new BuildingConfig() {
 				Type = BuildingType.Smeltery,
+				ConstructionTime = 10,
 				ModulesLimit = 4,
 				AvailableModules = new[]{ ModuleType.Furnace }
 			}},
 			{ BuildingType.Roboport, new BuildingConfig() {
 				Type = BuildingType.Roboport,
+				ConstructionTime = 12,
 				ModulesLimit = 3,
 				AvailableModules = new[]{
 					ModuleType.Digger,
@@ -31,16 +34,20 @@ namespace GameLogic.Architecture
 
 		private readonly Dictionary<ModuleType, ModuleConfig> modules = new Dictionary<ModuleType, ModuleConfig>() {
 			{ ModuleType.Generator, new ModuleConfig() {
-				Type = ModuleType.Generator
+				Type = ModuleType.Generator,
+				ConstructionTime = 5
 			}},
 			{ ModuleType.Furnace, new ModuleConfig() {
-				Type = ModuleType.Furnace
+				Type = ModuleType.Furnace,
+				ConstructionTime = 6
 			}},
 			{ ModuleType.Digger, new ModuleConfig() {
-				Type = ModuleType.Digger
+				Type = ModuleType.Digger,
+				ConstructionTime = 7
 			}},
 			{ ModuleType.Miner, new ModuleConfig() {
-				Type = ModuleType.Miner
+				Type = ModuleType.Miner,
+				ConstructionTime = 8
 			}}
 		};
 

@@ -10,6 +10,7 @@ namespace GameLogic.Architecture
 
 		public readonly BuildingConfig Config;
 		public readonly BuildingType Type;
+		public readonly Progression Constructible;
 
 		// Каждый модуль может иметь свою сообтвенную позицию
 		private readonly Dictionary<int, Module> modules = new Dictionary<int, Module>();
@@ -23,6 +24,7 @@ namespace GameLogic.Architecture
 			Type = config.Type;
 			ModulesLimit = config.ModulesLimit;
 			Config = config;
+			Constructible = new Progression(config.ConstructionTime);
 		}
 
 		public Module GetModule (int position)

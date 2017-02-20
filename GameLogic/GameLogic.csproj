@@ -54,10 +54,12 @@
     <Compile Include="Architecture\Ship.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Commands\BuildingConstruct.cs" />
+    <Compile Include="Commands\ConstructionProgress.cs" />
     <Compile Include="Commands\ModuleConstruct.cs" />
     <Compile Include="Commands\NextTurn.cs" />
     <Compile Include="Commands\NextTurnCount.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Progression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeWarp.cs" />
     <Compile Include="Turns.cs" />
