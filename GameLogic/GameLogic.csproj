@@ -55,8 +55,12 @@
     <Compile Include="Command.cs" />
     <Compile Include="Commands\BuildingConstruct.cs" />
     <Compile Include="Commands\ModuleConstruct.cs" />
+    <Compile Include="Commands\NextTurn.cs" />
+    <Compile Include="Commands\NextTurnCount.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeWarp.cs" />
+    <Compile Include="Turns.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
