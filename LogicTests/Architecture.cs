@@ -2,6 +2,7 @@ using System.Linq;
 using GameLogic;
 using GameLogic.Architecture;
 using GameLogic.Commands;
+using GameLogic.Player;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LogicTests
@@ -14,6 +15,7 @@ namespace LogicTests
 		{
 			var core = new Core();
 			var room = core.Ship.GetRoom(0);
+			core.Bank.Change(ResourceType.Metal, 1000);
 
 			Assert.AreEqual(BuildingType.Empty, room.Building.Type);
 			Assert.AreEqual(0, room.Building.Modules.Count());
@@ -52,6 +54,7 @@ namespace LogicTests
 		{
 			var core = new Core();
 			var room = core.Ship.GetRoom(0);
+			core.Bank.Change(ResourceType.Metal, 1000);
 
 			Assert.IsFalse(
 				new BuildingConstruct(
@@ -106,6 +109,7 @@ namespace LogicTests
 		{
 			var core = new GameLogic.Core();
 			var room = core.Ship.GetRoom(0);
+			core.Bank.Change(ResourceType.Metal, 1000);
 
 			new BuildingConstruct(
 				room,
@@ -135,6 +139,7 @@ namespace LogicTests
 			var core = new GameLogic.Core();
 			var roomRoboport = core.Ship.GetRoom(0);
 			var roomPowerPlant = core.Ship.GetRoom(1);
+			core.Bank.Change(ResourceType.Metal, 1000);
 
 
 			Assert.IsTrue(
@@ -184,6 +189,7 @@ namespace LogicTests
 		{
 			var core = new GameLogic.Core();
 			var room = core.Ship.GetRoom(0);
+			core.Bank.Change(ResourceType.Metal, 1000);
 
 			new BuildingConstruct(
 				room,
@@ -210,6 +216,7 @@ namespace LogicTests
 
 			var core = new GameLogic.Core();
 			var room = core.Ship.GetRoom(0);
+			core.Bank.Change(ResourceType.Metal, 1000);
 
 			// Smeltery
 
@@ -247,6 +254,24 @@ namespace LogicTests
 			new NextTurn().Execute(core);
 
 			Assert.IsTrue(module.Constructible.IsReady);
+		}
+
+		[TestMethod]
+		public void CantBuiltCostly ()
+		{
+			var core = new GameLogic.Core();
+			var room = core.Ship.GetRoom(0);
+
+			core.Bank.Change(ResourceType.Metal, 3);
+
+			Assert.IsFalse(
+				new BuildingConstruct(
+					room,
+					core.Factory.ProduceBuilding(BuildingType.Smeltery)
+				)
+				.Execute(core)
+				.IsValid
+			);
 		}
 	}
 }

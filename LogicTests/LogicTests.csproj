@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Architecture.cs" />
     <Compile Include="Init.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Turns.cs" />
   </ItemGroup>

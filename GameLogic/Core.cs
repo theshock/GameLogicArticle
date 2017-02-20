@@ -1,4 +1,5 @@
 using GameLogic.Architecture;
+using GameLogic.Player;
 
 namespace GameLogic
 {
@@ -9,6 +10,7 @@ namespace GameLogic
 		public readonly Ship Ship = new Ship();
 		public readonly Factory Factory = new Factory();
 		public readonly Turns Turns = new Turns();
+		public readonly Bank Bank = new Bank();
 
 		public Core ()
 		{

@@ -24,6 +24,10 @@ namespace GameLogic.Commands
 				return false;
 			}
 
+			if (!new Pay(Building.Config.ConstructionCost).Execute(Core).IsValid) {
+				return false;
+			}
+
 			Room.Building = Building;
 			return true;
 		}

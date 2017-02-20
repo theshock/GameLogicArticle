@@ -58,7 +58,10 @@
     <Compile Include="Commands\ModuleConstruct.cs" />
     <Compile Include="Commands\NextTurn.cs" />
     <Compile Include="Commands\NextTurnCount.cs" />
+    <Compile Include="Commands\Pay.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Player\Bank.cs" />
+    <Compile Include="Player\ResourceType.cs" />
     <Compile Include="Progression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeWarp.cs" />
