@@ -43,6 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Architecture\Building.cs" />
+    <Compile Include="Architecture\BuildingType.cs" />
+    <Compile Include="Architecture\Module.cs" />
+    <Compile Include="Architecture\ModuleType.cs" />
+    <Compile Include="Architecture\Room.cs" />
+    <Compile Include="Architecture\Ship.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Commands\BuildingConstruct.cs" />
+    <Compile Include="Commands\ModuleConstruct.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
