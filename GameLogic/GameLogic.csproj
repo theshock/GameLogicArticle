@@ -55,6 +55,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="Commands\BuildingConstruct.cs" />
     <Compile Include="Commands\ConstructionProgress.cs" />
+    <Compile Include="Commands\CycleProgress.cs" />
     <Compile Include="Commands\ModuleConstruct.cs" />
     <Compile Include="Commands\NextTurn.cs" />
     <Compile Include="Commands\NextTurnCount.cs" />

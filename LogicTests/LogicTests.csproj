@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Architecture.cs" />
+    <Compile Include="Cycle.cs" />
     <Compile Include="Init.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
