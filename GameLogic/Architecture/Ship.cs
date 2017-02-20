@@ -13,10 +13,10 @@ namespace GameLogic.Architecture
 			get { return rooms; }
 		}
 
-		public void CreateEmptyRooms ()
+		public void CreateEmptyRooms (Factory factory)
 		{
 			for (var i = 0; i < RoomsLimit; i++) {
-				rooms.Add(new Room(i));
+				rooms.Add(new Room(i, factory.ProduceBuilding(BuildingType.Empty)));
 			}
 		}
 

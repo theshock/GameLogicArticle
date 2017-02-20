@@ -21,7 +21,7 @@ namespace LogicTests
 			Assert.IsTrue(
 				new BuildingConstruct(
 					room,
-					new Building(BuildingType.PowerPlant)
+					core.Factory.ProduceBuilding(BuildingType.PowerPlant)
 				)
 				.Execute(core)
 				.IsValid
@@ -33,7 +33,7 @@ namespace LogicTests
 			Assert.IsTrue(
 				new ModuleConstruct(
 					room.Building,
-					new Module(ModuleType.Generator),
+					core.Factory.ProduceModule(ModuleType.Generator),
 					2
 				)
 				.Execute(core)
@@ -54,7 +54,7 @@ namespace LogicTests
 			Assert.IsFalse(
 				new BuildingConstruct(
 					room,
-					new Building(BuildingType.Empty)
+					core.Factory.ProduceBuilding(BuildingType.Empty)
 				)
 				.Execute(core)
 				.IsValid
@@ -63,7 +63,7 @@ namespace LogicTests
 			Assert.IsFalse(
 				new ModuleConstruct(
 					room.Building,
-					new Module(ModuleType.Generator),
+					core.Factory.ProduceModule(ModuleType.Generator),
 					2
 				)
 				.Execute(core)
@@ -72,14 +72,14 @@ namespace LogicTests
 
 			new BuildingConstruct(
 				room,
-				new Building(BuildingType.PowerPlant)
+				core.Factory.ProduceBuilding(BuildingType.PowerPlant)
 			)
 			.Execute(core);
 
 			Assert.IsFalse(
 				new BuildingConstruct(
 					room,
-					new Building(BuildingType.PowerPlant)
+					core.Factory.ProduceBuilding(BuildingType.PowerPlant)
 				)
 				.Execute(core)
 				.IsValid
@@ -88,8 +88,82 @@ namespace LogicTests
 			Assert.IsFalse(
 				new ModuleConstruct(
 					room.Building,
-					new Module(ModuleType.Generator),
+					core.Factory.ProduceModule(ModuleType.Generator),
 					666
+				)
+				.Execute(core)
+				.IsValid
+			);
+		}
+
+
+		[TestMethod]
+		public void CantConstructInWrongBuilding ()
+		{
+			var core = new GameLogic.Core();
+			var room = core.Ship.GetRoom(0);
+
+			new BuildingConstruct(
+				room,
+				core.Factory.ProduceBuilding(BuildingType.PowerPlant)
+			)
+			.Execute(core);
+
+			Assert.IsFalse(
+				new ModuleConstruct(
+					room.Building,
+					core.Factory.ProduceModule(ModuleType.Furnace),
+					2
+				)
+				.Execute(core)
+				.IsValid
+			);
+
+			Assert.AreEqual(null, room.Building.GetModule(2));
+		}
+
+
+		[TestMethod]
+		public void ModulesLimits ()
+		{
+			var core = new GameLogic.Core();
+			var roomRoboport = core.Ship.GetRoom(0);
+			var roomPowerPlant = core.Ship.GetRoom(1);
+
+
+			Assert.IsTrue(
+				new BuildingConstruct(
+					roomRoboport,
+					core.Factory.ProduceBuilding(BuildingType.Roboport)
+				)
+				.Execute(core)
+				.IsValid
+			);
+
+			Assert.IsTrue(
+				new BuildingConstruct(
+					roomPowerPlant,
+					core.Factory.ProduceBuilding(BuildingType.PowerPlant)
+				)
+				.Execute(core)
+				.IsValid
+			);
+
+			Assert.IsFalse(
+				new ModuleConstruct(
+					roomRoboport.Building,
+					core.Factory.ProduceModule(ModuleType.Miner),
+					3
+				)
+				.Execute(core)
+				.IsValid
+			);
+
+			Assert.IsTrue(
+				new ModuleConstruct(
+					roomPowerPlant.Building,
+					core.Factory.ProduceModule(ModuleType.Generator),
+					3
 				)
 				.Execute(core)
 				.IsValid

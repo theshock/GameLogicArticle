@@ -7,12 +7,11 @@ namespace GameLogic.Architecture
 		// каждая комната является пристанищем для строения
 		public Building Building { get; set; }
 
-		public Room (int index)
+		public Room (int index, Building building)
 		{
 			Index = index;
 
-			// и по-умолчанию - это пустое строение
-			Building = new Building(BuildingType.Empty);
+			Building = building;
 		}
 	}
 }

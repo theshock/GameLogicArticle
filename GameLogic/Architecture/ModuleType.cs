@@ -2,6 +2,9 @@ namespace GameLogic.Architecture
 {
 	public enum ModuleType
 	{
-		Generator
+		Generator,
+		Furnace,
+		Digger,
+		Miner
 	}
 }

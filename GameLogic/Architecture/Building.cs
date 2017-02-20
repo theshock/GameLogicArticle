@@ -6,8 +6,9 @@ namespace GameLogic.Architecture
 	public class Building
 	{
 		// Ограничим количество модулей, которые можно поставить в строение
-		public readonly int ModulesLimit = 10;
+		public readonly int ModulesLimit;
 
+		public readonly BuildingConfig Config;
 		public readonly BuildingType Type;
 
 		// Каждый модуль может иметь свою сообтвенную позицию
@@ -17,9 +18,11 @@ namespace GameLogic.Architecture
 			get { return modules.Values; }
 		}
 
-		public Building (BuildingType type)
+		public Building (BuildingConfig config)
 		{
-			Type = type;
+			Type = config.Type;
+			ModulesLimit = config.ModulesLimit;
+			Config = config;
 		}
 
 		public Module GetModule (int position)

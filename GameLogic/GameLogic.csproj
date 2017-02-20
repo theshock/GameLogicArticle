@@ -44,8 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Architecture\Building.cs" />
+    <Compile Include="Architecture\BuildingConfig.cs" />
     <Compile Include="Architecture\BuildingType.cs" />
+    <Compile Include="Architecture\Factory.cs" />
     <Compile Include="Architecture\Module.cs" />
+    <Compile Include="Architecture\ModuleConfig.cs" />
     <Compile Include="Architecture\ModuleType.cs" />
     <Compile Include="Architecture\Room.cs" />
     <Compile Include="Architecture\Ship.cs" />

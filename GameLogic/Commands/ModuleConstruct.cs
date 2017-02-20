@@ -1,3 +1,4 @@
+using System.Linq;
 using GameLogic.Architecture;
 
 namespace GameLogic.Commands
@@ -26,6 +27,10 @@ namespace GameLogic.Commands
 			}
 
 			if (Building.GetModule(Position) != null) {
+				return false;
+			}
+
+			if (!Building.Config.AvailableModules.Contains(Module.Type)) {
 				return false;
 			}
 

@@ -2,11 +2,13 @@ namespace GameLogic.Architecture
 {
 	public class Module
 	{
+		public readonly ModuleConfig Config;
 		public readonly ModuleType Type;
-
-		public Module (ModuleType type)
+		
+		public Module (ModuleConfig config)
 		{
-			Type = type;
+			Type = config.Type;
+			Config = config;
 		}
 	}
 
